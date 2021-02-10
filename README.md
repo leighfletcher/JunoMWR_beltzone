@@ -5,12 +5,20 @@ Supplemental material for Fletcher et al. (2021) Juno MWR belt/zone analysis:
 
 L.N. Fletcher, F.A. Oyafuso, M. Allison, A. Ingersoll, L. Li, Y. Kaspi, E.Galanti, M.H. Wong, G.S. Orton, K. Duer, Z. Zhang, C. Li, T. Guillot, S.M. Levin, S. Bolton
 
+Note:  We use H5 files to store data in a Hierarchical Data Format (HDF5). Each file contains multidimensional arrays of scientific data. [HDFView](https://www.neonscience.org/resources/learning-hub/tutorials/explore-data-hdfview) can be used to explore the data, or this can be read in Python by:
+
+`import h5py`
+`hf = h5py.File('nadirTB_submit.h5', 'r')`
+`hf.keys()`
+
+[IDL](https://www.l3harrisgeospatial.com/docs/HDF5_Overview.html) also provides access to HDF5 files via a set of procedures and functions contained in a dynamically loadable module (DLM).
+
 ## MWR Limb-Darkened Brightness temperatures
 File: `TBmu_submit.h5`
 
 Fig. 1 of Fletcher+2021 and `limbdarken_mean.png`
 
-MWR brightness temperatures calculated for six channels, 255 latitudes, and 90 emission angles, based on the quadratic functional form in Fletcher+2021 and shown in `limbdarken_mean.png`.  The HDF contains `TBmu` for 6 channels, 255 latitudes (`latitudes`), and 91 angles (`emissionangle`).  We also include the three weighted average coefficients (c0, c1, c2) for the limb darkening for 6 channels and 255 latitudes.
+MWR brightness temperatures calculated for six channels, 255 latitudes, and 90 emission angles, based on the quadratic functional form in Fletcher+2021 and shown in `limbdarken_mean.png`.  The HDF file contains `TBmu` for 6 channels, 255 latitudes (`latitudes`), and 91 angles (`emissionangle`).  We also include the three weighted average coefficients (c0, c1, c2) for the limb darkening for 6 channels and 255 latitudes.
 
 ## MWR Nadir Brightness Temperatures
 File: `nadirTB_submit.h5`
@@ -34,11 +42,14 @@ Fig. 4 of Fletcher+2021
 Contains the Cassini/ISS cloud-top zonal winds from Porco et al. (2003), as the `winds` array with corresponding `windlat` array giving planetocentric latitudes.  Latitudes of prominent eastward (`eastjets`) and westward (`westjets`) jets are also provided.  These cloud-top winds were correlated with the nadir pseudoshear in Fig. 4 of Fletcher+2021.  Alternative wind correlations in the Supplementary Material use `hubblewinds2017_tollefson.txt` for Feb 2017 (Tollefson et al., 2017) and `hubblewinds2019_wong.txt` for June 2019 (Wong et al., 2020).
 
 ## Contribution Functions
+File: `contfn_truenh3_submit.h5` and `contfn_default_submit.h5`
 
-Fig. 6 of Fletcher+2021
+Fig. 6 of Fletcher+2021, and `contfn_truenh3.png` and `contfn_default.png`
+
+JAMRT code used to estimate the contribution function variation for all six channels on 17 latitudes (`latitudes`) and a high-resolution pressure grid (`pressure`) for 160 emission angles (`emissionangle`).  We used two different approaches for the ammonia abundance:  "truenh3" uses the retrieved ammonia abundances from Guillot et al. (2020), based on the inversion technique of Li et al. (2017); "default" uses a latitudinally-uniform deep abundance, decreasing at higher altitudes via the condensation of cloud decks.  Within each HDF file, we use two opacity models (Hanley et al., 2009 and Belotti et al., 2016) to produce `cf_hanley` and `cf_bellotti`.  The peak of the contribution function is measured in three regions (north 20N-40N, equator 5N-5S, and south 20S-40S), included as `cfpeak` arrays.  Finally, the north and south arrays are averaged to produce `meanpeaks` for each of the six MWR channels, and this is used in Fletcher+2021 to reproject brightness temperatures to a pressure grid.
 
 ## Brightness Temperature Cross-Section
-File:  `TBxsection.h5`
+File:  `TBxsection_submit.h5`
 
 Fig. 7-8 of Fletcher+2021, `TBxsection.png`
 
@@ -49,21 +60,21 @@ File: `gravheight_submit.h5`
 
 Fig:  `gravity_calc.png`
 
-Integration of the thermal wind equation, along with the original calculation of the pseudoshears, requires the calculation of altitude grids and gravitational acceleration as a function of latitude and pressure, as described in our supplemental materials.  HDF contains `pressure`, `latitudes`, `grav` and `height` grids for use in subsequent calculations.
+Integration of the thermal wind equation, along with the original calculation of the pseudoshears, requires the calculation of altitude grids and gravitational acceleration as a function of latitude and pressure, as described in our supplemental materials.  HDF file contains `pressure`, `latitudes`, `grav` and `height` grids for use in subsequent calculations.
 
 ## Pseudoshear Cross-Section
 File:  `dudzxsection_submit.h5`
 
 Fig. 9-10 of Fletcher+2021 and `MWRpseudoshear.png`
 
-Measurement of the pseudoshear from the reprojected brightness-temperature grid, using the appropriate gravitational acceleration.  HDF contains the pseudoshear `dudz` as a function of `latitudes` and `pressure`.  Note that these pseudoshears are over-estimates of the true windshear.
+Measurement of the pseudoshear from the reprojected brightness-temperature grid, using the appropriate gravitational acceleration.  HDF file contains the pseudoshear `dudz` as a function of `latitudes` and `pressure`.  Note that these pseudoshears are over-estimates of the true windshear.
 
 ## Dry Thermal Winds
 File: `drywinds_xsection_submit.h5`
 
 Fig. 11-12 of Fletcher+2021 and `MWRpseudowinds.png`
 
-Integrated thermal winds based on the pseudoshears, assuming the brightness temperatures represent kinetic temperatures.  HDF contains the zonal wind cross-section `utherm` on a grid of `pressure` and `latitudes`.  Integration used the altitude grid above.
+Integrated thermal winds based on the pseudoshears, assuming the brightness temperatures represent kinetic temperatures.  HDF file contains the zonal wind cross-section `utherm` on a grid of `pressure` and `latitudes`.  Integration used the altitude grid above.
 
 ## Moist Thermal Winds
 Files: `moistwinds_nh3_submit.h5` and `moistwinds_h2o_submit.h5`
