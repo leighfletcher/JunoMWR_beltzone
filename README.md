@@ -42,7 +42,7 @@ Fig. 4 of Fletcher+2021
 Contains the Cassini/ISS cloud-top zonal winds from Porco et al. (2003), as the `winds` array with corresponding `windlat` array giving planetocentric latitudes.  Latitudes of prominent eastward (`eastjets`) and westward (`westjets`) jets are also provided.  These cloud-top winds were correlated with the nadir pseudoshear in Fig. 4 of Fletcher+2021.  Alternative wind correlations in the Supplementary Material use `hubblewinds2017_tollefson.txt` for Feb 2017 (Tollefson et al., 2017) and `hubblewinds2019_wong.txt` for June 2019 (Wong et al., 2020).
 
 ## Contribution Functions
-File: `contfn_truenh3_submit.h5` and `contfn_default_submit.h5`
+File: `contfn_truenh3_submit.h5` and `contfn_default_submit.h5` **Warning - 300MB files**
 
 Fig. 6 of Fletcher+2021, and `contfn_truenh3.png` and `contfn_default.png`
 
