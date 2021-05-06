@@ -5,6 +5,9 @@ Supplemental material for Fletcher et al. (2021) Juno MWR belt/zone analysis:
 
 L.N. Fletcher, F.A. Oyafuso, M. Allison, A. Ingersoll, L. Li, Y. Kaspi, E.Galanti, M.H. Wong, G.S. Orton, K. Duer, Z. Zhang, C. Li, T. Guillot, S.M. Levin, S. Bolton
 
+[![DOI](https://zenodo.org/badge/337518717.svg)](https://zenodo.org/badge/latestdoi/337518717)
+
+
 Note:  We use H5 files to store data in a Hierarchical Data Format (HDF5). Each file contains multidimensional arrays of scientific data. [HDFView](https://www.neonscience.org/resources/learning-hub/tutorials/explore-data-hdfview) can be used to explore the data, or this can be read in Python by:
 
 `import h5py`
